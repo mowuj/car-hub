@@ -11,7 +11,11 @@
     <h5>Price : {{car.quantity}}</h5>
     <h5>Brand : {{car.brand.name}}</h5>
     <p>{{car.description}}</p>
-    <button class="btn btn-warning">Buy Now</button>
+    <form action="{% url 'buy_car' car.id %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-warning" type="submit" value="Buy Now">
+</form>
+    
   </div>
 </div>
 

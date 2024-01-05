@@ -6,6 +6,7 @@ from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import logout,update_session_auth_hash
 from django.urls import reverse_lazy
 from car.models import Car
+from django.contrib.auth.models import User
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -13,7 +14,7 @@ def register(request):
         if register_form.is_valid():
             register_form.save()
             messages.success(request,"Account Created Successfully")
-            return redirect ('login')
+            return redirect ('user_login')
     else:
         register_form = forms.RegistrationForm()
     return render(request, 'register.html',{'form':register_form,'type':'Register'})
@@ -40,7 +41,7 @@ class UserLoginView(LoginView):
 
     
 def profile(request):
-    data=Car.objects.all()
+    data = Car.objects.filter(user=request.user)
     return render(request,'profile.html',{'data':data})
 
 def edit_profile(request):

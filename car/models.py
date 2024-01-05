@@ -1,9 +1,11 @@
 from django.db import models
 from brand.models import Brand
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Car(models.Model):
     name=models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
     price=models.IntegerField()
     quantity=models.IntegerField()
     description=models.TextField()

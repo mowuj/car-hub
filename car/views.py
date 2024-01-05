@@ -1,15 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Car
 from .forms import CarForm
 from customer.forms import CommentForm
 from django.views.generic import CreateView,UpdateView,DetailView
 from django.urls import reverse_lazy
+from django.views import View
 
 class AddCarView(CreateView):
     model = Car
     form_class = CarForm
     template_name = 'add_car.html'
     success_url = reverse_lazy('add_car')
+
+    def form_valid(self,form):
+        form.instance.user=self.request.user
+        return super().form_valid(form)
 
 
 class CarDetailView(DetailView):
@@ -35,3 +40,10 @@ class CarDetailView(DetailView):
         context['comments'] = comments
         context['comment_form'] = comment_form
         return context
+
+def buy_car(request,id):
+    car = Car.objects.get(pk=id)
+    if car.quantity > 0:
+        car.quantity -= 1
+        car.save()
+    return redirect('car_detail', id=car.id)

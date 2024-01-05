@@ -9,3 +9,6 @@ class AddBrandView(CreateView):
     form_class = BrandForm
     template_name = 'add_brand.html'
     success_url = reverse_lazy('add_brand')
+
+    def form_valid(self, form):
+        return super().form_valid(form)

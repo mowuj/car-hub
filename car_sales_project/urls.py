@@ -24,7 +24,7 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('brand/<slug:brand_slug>/', views.home, name='brand'),
     path('car/',include('car.urls')),
-    path('brand/',include('brand.urls')),
+    path('brands/',include('brand.urls')),
     path('customer/',include('customer.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL,
