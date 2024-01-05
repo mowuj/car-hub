@@ -2,6 +2,47 @@
 {% load static %}
 {% block content %}
 
-<h1>This is home</h1>
+<div class=" d-flex ">
+    <div class="col-6">
+        <H1>AHM Car Hub</H1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, ea? Eius id deserunt aliquam iste, quas totam ducimus neque, corporis tempora sunt illum! Dignissimos enim quod harum eveniet aliquid pariatur, ad accusantium blanditiis, provident voluptates aliquam nesciunt, dolorem at? Animi, iste voluptatem. Ipsam totam assumenda quibusdam fugiat, magnam explicabo dolores culpa rem? Totam quod iusto itaque accusantium! Minus, cum adipisci? Aspernatur ad, cumque aperiam a, sequi velit impedit vitae perferendis, molestiae saepe odio earum deserunt obcaecati eum sunt nemo laboriosam natus vero rem aut placeat dicta in. Est deleniti ea eveniet, aspernatur adipisci amet. Velit voluptate vitae accusamus laudantium facilis?</p>
+    </div>
+<div class="col-6">
+    <img src="{% static '../static/images/car1.webp' %}" alt="">
+</div>
+</div>
 
+<div>
+    {% for i in data %}
+    <button class="btn-warning" >{{i.name}}</button>
+    {% endfor %}
+    
+</div>
+
+<div class="col-10 p-3">
+    <h4 class="text-center">{{data | length}} Results Found</h4>
+    <div class="d-flex flex-wrap px-5 my-5">
+  {% for i in cars %}
+    <div class="col-sm-3 mb-3 mb-sm-0">
+    <div class="card mx-3">
+      <div class="card-body">
+        <img src="{{i.image.url}}" class="card-img-top" alt="...">
+        <h5 class="card-title"><a href="" class="text-decoration-none text-dark">{{i.name}}</a></h5>
+        <p class="card-text">Price: {{i.price}}</p>
+        <p class="card-text">Quantity: {{i.quantity}}</p>
+        <p class="card-text">Brand: {{i.brand.name}}</p>
+        <p class="card-text">{{i.description | truncatewords:10}}</p>
+        
+        
+            
+            <br>
+            <button class="btn btn-primary btn-sm disabled my-2">View Detail</button>
+        </p>
+        
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+  </div>
 {% endblock content %}
