@@ -3,6 +3,7 @@ from .import forms
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth import logout,update_session_auth_hash
 from django.urls import reverse_lazy
 from car.models import Car
 # Create your views here.
@@ -52,3 +53,19 @@ def edit_profile(request):
     else:
         profile_form = forms.ChangeUserData(instance=request.user)
     return render(request,'update_profile.html',{'form':profile_form})
+
+def change_pass(request):
+    if request.method == 'POST':
+        form=PasswordChangeForm(request.user,data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Password changed Successfully')
+            update_session_auth_hash(request,form.user)
+            return redirect('profile')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request,'change_pass.html',{'form':form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')

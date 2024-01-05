@@ -4,7 +4,7 @@
 
 <form action="" method="post" class="w-50 m-auto">
     <h1>Update Profile Page</h1>
-    <a class="btn btn-warning btn-sm" href="">Change Password</a>
+    <a class="btn btn-warning btn-sm" href="{% url 'change_pass' %}">Change Password</a>
     <br>     
         {% csrf_token %}
         {{form | crispy}}
