@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+<div class="d-flex justify-content-center align-items-center gap-5 mt-5">
+  <div class="col-4">
+    <img src="{{car.image.url}}" alt="" class="w-100">
+  </div>
+  <div class="col-6">
+    <h3>{{car.name}}</h3>
+    <h5>Price : {{car.price}}</h5>
+    <h5>Price : {{car.quantity}}</h5>
+    <h5>Brand : {{car.brand.name}}</h5>
+    <p>{{car.description}}</p>
+    <button class="btn btn-warning">Buy Now</button>
+  </div>
+</div>
+
+
+{% endblock content %}

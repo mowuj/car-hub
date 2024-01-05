@@ -9,3 +9,8 @@ class AddCarView(CreateView):
     form_class = CarForm
     template_name = 'add_car.html'
     success_url = reverse_lazy('add_car')
+
+class CarDetailView(DetailView):
+    model=Car
+    pk_url_kwarg='id'
+    template_name='car_detail.html'
