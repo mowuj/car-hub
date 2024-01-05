@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+# from .froms import Brand
 
-# Create your views here.
+# class AddBrandView(CreateView)
