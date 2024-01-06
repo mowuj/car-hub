@@ -4,11 +4,12 @@
 
 <div class=" d-flex justify-content-center align-items-center gap-4 mt-5">
     <div class="col-6 ms-2">
-        <H1>AHM Car Hub</H1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, ea? Eius id deserunt aliquam iste, quas totam ducimus neque, corporis tempora sunt illum! Dignissimos enim quod harum eveniet aliquid pariatur, ad accusantium blanditiis, provident voluptates aliquam nesciunt, dolorem at? Animi, iste voluptatem. Ipsam totam assumenda quibusdam fugiat, magnam explicabo dolores culpa rem? Totam quod iusto itaque accusantium! Minus, cum adipisci? Aspernatur ad, cumque aperiam a, sequi velit impedit vitae perferendis, molestiae saepe odio earum deserunt obcaecati eum sunt nemo laboriosam natus vero rem aut placeat dicta in. Est deleniti ea eveniet, aspernatur adipisci amet. Velit voluptate vitae accusamus laudantium facilis?</p>
+        <H1>AHM CAR HUB</H1>
+        <p>AHM Car hub is your first Choice for buy a latest models Cars.Customer service is our first priority.So come and visit our office and choice your favourate car.We provide 6 month and 3 free service by best mecanic.</p>
+        <button class="btn btn-info">Contact US</button>
     </div>
 <div class="col-5">
-    <img src="{% static '../static/images/car1.webp' %}" alt="" class="w-100">
+    <img src="{% static '../static/images/banner-1.jpg' %}" alt="" class="w-100">
 </div>
 </div>
 
@@ -21,7 +22,7 @@
 </div>
 
 <div class=" p-3">
-    <h4 class="text-center">{{data | length}} Results Found</h4>
+    <h4 class="text-center">Total Car Found : {{data | length}}</h4>
     <div class="d-flex flex-wrap px-5 my-5">
   {% for i in data %}
     <div class="col-sm-3 mb-3 mb-sm-0">

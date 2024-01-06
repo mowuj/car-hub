@@ -7,6 +7,11 @@ from django.contrib.auth import logout,update_session_auth_hash
 from django.urls import reverse_lazy
 from car.models import Car
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
+
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -39,14 +44,17 @@ class UserLoginView(LoginView):
         context['type'] = 'Login'
         return context
 
-    
+
+@login_required
 def profile(request):
     data = Car.objects.filter(user=request.user)
     return render(request,'profile.html',{'data':data})
 
+
+@login_required
 def edit_profile(request):
     if request.method == 'POST':
-        profile_form=forms.ChangeUserData(request.post,instance=request.user)
+        profile_form=forms.ChangeUserData(request.POST,instance=request.user)
         if profile_form.is_valid():
             profile_form.save()
             messages.success(request,'Profile updated Successfully')
@@ -67,6 +75,8 @@ def change_pass(request):
         form = PasswordChangeForm(user=request.user)
     return render(request,'change_pass.html',{'form':form})
 
+
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('user_login')

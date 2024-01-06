@@ -8,12 +8,14 @@
   <div class="col-6">
     <h3>{{car.name}}</h3>
     <h5>Price : {{car.price}}</h5>
-    <h5>Price : {{car.quantity}}</h5>
+    <h5>Quantity : {{car.quantity}}</h5>
     <h5>Brand : {{car.brand.name}}</h5>
     <p>{{car.description}}</p>
     <form action="{% url 'buy_car' car.id %}" method="post">
     {% csrf_token %}
+    {% if request.user.is_authenticated %}
     <input class="btn btn-warning" type="submit" value="Buy Now">
+    {% endif %}
 </form>
     
   </div>

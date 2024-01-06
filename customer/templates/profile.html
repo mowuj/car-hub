@@ -15,10 +15,13 @@
     <div class="col-sm-3 mb-3 mb-sm-0">
     <div class="card mx-3">
       <div class="card-body">
+        <img src="{{i.image.url}}" class="card-img-top" alt="...">
         <h5 class="card-title">{{i.name}}</h5>
         <p class="card-text">Price : {{i.price}}</p>
         <p>Quantity : {{i.quantity}}</p>
         <p>Brand : {{i.brand.name}} </p>
+        <p class="card-text">{{i.description | truncatewords:10}}</p>
+        <a class="btn btn-primary btn-sm my-2" href="{% url 'car_detail' i.id %}">View Detail</a>
       </div>
     </div>
   </div>

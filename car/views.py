@@ -5,7 +5,10 @@ from customer.forms import CommentForm
 from django.views.generic import CreateView,UpdateView,DetailView
 from django.urls import reverse_lazy
 from django.views import View
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
 class AddCarView(CreateView):
     model = Car
     form_class = CarForm
@@ -17,6 +20,7 @@ class AddCarView(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required, name='dispatch')
 class CarDetailView(DetailView):
     model = Car
     pk_url_kwarg = 'id'
@@ -41,6 +45,8 @@ class CarDetailView(DetailView):
         context['comment_form'] = comment_form
         return context
 
+
+@login_required
 def buy_car(request,id):
     car = Car.objects.get(pk=id)
     if car.quantity > 0:
